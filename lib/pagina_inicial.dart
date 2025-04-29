@@ -34,6 +34,38 @@ class PantallaUno extends StatelessWidget {
               child: const Text('Cambia a la pantalla 3 papu 👽!'),
             ),
           ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pantalla4');
+              },
+              child: const Text('Cambia a la pantalla 4 papu 🥵!'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pantalla5');
+              },
+              child: const Text('Cambia a la pantalla 5 papu 💩!'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pantalla6');
+              },
+              child: const Text('Cambia a la pantalla 6 papu 🤖!'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/pantalla7');
+              },
+              child: const Text('Cambia a la pantalla 7 papu 🎶!'),
+            ),
+          ),
         ],
       ),
     );

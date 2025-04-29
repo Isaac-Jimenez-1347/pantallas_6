@@ -1,28 +1,60 @@
 import 'package:flutter/material.dart';
 
-class PantallaDos extends StatelessWidget {
+//! PantallaSeis con AnimatedAlign y botón para volver
+class PantallaDos extends StatefulWidget {
   const PantallaDos({Key? key}) : super(key: key);
+
+  @override
+  State<PantallaDos> createState() => _PantallaDosState();
+}
+
+class _PantallaDosState extends State<PantallaDos> {
+  bool selected = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Pantalla Dos',
+          'Pantalla dos',
           style: TextStyle(
-            color: Color(0xff000000), // Letra blanca
-            fontSize: 20, // Tamaño 20
+            color: Color(0xff000000), // Letra negra
+            fontSize: 20,
           ),
         ),
-        centerTitle: true, // Texto centrado
-        backgroundColor: Color(0xffff4e4e), // Fondo gris
+        centerTitle: true,
+        backgroundColor: Color(0xffec577c), // Fondo rojo
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            Navigator.pushNamed(context, '/pantalla3');
-          },
-          child: const Text('Vete a la pantalla 3 mi niño 🥶!'),
-        ),
+      body: Column(
+        children: [
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                selected = !selected;
+              });
+            },
+            child: Container(
+              width: double.infinity,
+              height: 250.0,
+              color: Colors.blueGrey,
+              child: AnimatedAlign(
+                alignment: selected ? Alignment.topRight : Alignment.bottomLeft,
+                duration: const Duration(seconds: 1),
+                curve: Curves.fastOutSlowIn,
+                child: const FlutterLogo(size: 50.0),
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Vete a la pantalla 1!'),
+            ),
+          ),
+        ],
       ),
     );
   }

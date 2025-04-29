@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//! AnimatedAlign con GestureDetector
+//! AnimatedDefaultTextStyle en lugar de AnimatedAlign
 class PantallaSeis extends StatefulWidget {
   const PantallaSeis({Key? key}) : super(key: key);
 
@@ -9,7 +9,9 @@ class PantallaSeis extends StatefulWidget {
 }
 
 class _PantallaSeisState extends State<PantallaSeis> {
-  bool selected = false;
+  bool _first = true;
+  double _fontSize = 60;
+  Color _color = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,9 @@ class _PantallaSeisState extends State<PantallaSeis> {
       body: GestureDetector(
         onTap: () {
           setState(() {
-            selected = !selected;
+            _fontSize = _first ? 90 : 60;
+            _color = _first ? Colors.blue : Colors.red;
+            _first = !_first;
           });
         },
         child: Center(
@@ -36,11 +40,32 @@ class _PantallaSeisState extends State<PantallaSeis> {
             width: double.infinity,
             height: 250.0,
             color: Colors.blueGrey,
-            child: AnimatedAlign(
-              alignment: selected ? Alignment.topRight : Alignment.bottomLeft,
-              duration: const Duration(seconds: 1),
-              curve: Curves.fastOutSlowIn,
-              child: const FlutterLogo(size: 50.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                AnimatedDefaultTextStyle(
+                  duration: const Duration(milliseconds: 300),
+                  style: TextStyle(
+                    fontSize: _fontSize,
+                    color: _color,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  child: const Text('Flutter'),
+                ),
+                SizedBox(height: 20), // Espaciado entre el texto y el botón
+                TextButton(
+                  onPressed: () {
+                    setState(() {
+                      _fontSize = _first ? 90 : 60;
+                      _color = _first ? Colors.blue : Colors.red;
+                      _first = !_first;
+                    });
+                  },
+                  child: const Text(
+                    "Switch",
+                  ),
+                ),
+              ],
             ),
           ),
         ),

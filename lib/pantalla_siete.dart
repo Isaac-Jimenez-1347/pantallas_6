@@ -65,7 +65,7 @@ class _PantallaSieteState extends State<PantallaSiete> {
           IconButton(
             onPressed: _addItem,
             icon: const Icon(Icons.add),
-            color: Colors.white, // Color blanco para el icono
+            color: Color(0xff000000), // Color blanco para el icono
           ),
           // AnimatedList para mostrar los items
           Expanded(
